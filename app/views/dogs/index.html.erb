@@ -1,14 +1,32 @@
 <h1> List </h1>
 
-<ul>
-<% @dogs.each do |d| %>
-  
- 	  <li><%= d.name %></li>
- 	  <%= d.descrip %>
-	  <%= link_to 'show' , dog_path(d) %>
-	  <%= link_to 'edit' , edit_dog_path(d) %>
-	  <%= button_to 'delete', dog_path(d), :method => :delete, :data => { :confirm => "Are you sure?" } %>
-<% end %>
-</ul>
+<table class= 'table'>
 
-<%= link_to 'New Event', dogs_url %>
+<thead>
+      <tr>
+        <th>name</th>
+        <th>description</th>
+        <th>show</th>
+        <th>edit</th>
+        <th>Get J</th>
+        <th>delete</th>
+      </tr>
+    </thead>
+
+<% @dogs.each do |d| %>
+	
+    <tbody>
+ 	  <tr>
+	 	  <td><%= d.name %></td>
+	 	  <td><%= d.descrip %></td>
+		  <td><%= link_to 'show' , dog_path(d) , :class => "btn btn-default" %></td>
+		  <td><%= link_to 'edit' , edit_dog_path(d) , :class => "btn btn-default" %></td>
+		  <td><%= link_to 'Get json' , dog_path(d, :format => :json) , :class => "btn btn-default"%></td>
+		  <td><%= link_to 'delete', dog_path(d), :class => "btn btn-default" , :method => :delete, :data => { :confirm => "Are you sure?" } %></td>
+		  
+	  </tr>
+<% end %>
+	</tbody>
+</table>
+
+<%= link_to 'New Event', new_dog_path() %>

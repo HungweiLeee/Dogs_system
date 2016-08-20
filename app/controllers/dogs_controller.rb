@@ -1,7 +1,7 @@
 class DogsController < ApplicationController
 
   def index
-  	@dogs = Dog.all
+  	@dogs = Dog.page(params[:page]).per(5)
   end
 
   def new
@@ -18,11 +18,10 @@ class DogsController < ApplicationController
 
   def update
   	@dog = Dog.find(params[:id])
-	@dog.update(event_params)
-	flash[:notice] = "event was successfully updated"
+  	@dog.update(event_params)
+  	flash[:notice] = "event was successfully updated"
 
-
-	redirect_to dog_path(@dog)
+    redirect_to dog_path(@dog)
   end
 
   def destroy
@@ -35,8 +34,12 @@ class DogsController < ApplicationController
 
   def create
   	@dog = Dog.new(event_params)
-  	@dog.save
-  	flash[:notice] = "event was successfully created"
+  	
+    if @dog.save
+  	 flash[:notice] = "event was successfully created"
+    else
+      render :action => :new
+    end
 
   	redirect_to dog_path(@dog)
   end
