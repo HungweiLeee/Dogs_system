@@ -1,0 +1,11 @@
+<%= form_for @dog , :url => {:controller => "dogs" , :action => "update" , :id => @dog} do |f| %>
+	
+	<%= f.label :name , "name"%>
+	<%= f.text_field :name %>
+
+	<%= f.label :descrip , "descrip"%>
+	<%= f.text_field :descrip %>
+
+	<%= f.submit "update" %>
+
+<% end %>
