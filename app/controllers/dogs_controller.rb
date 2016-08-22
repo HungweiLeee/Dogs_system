@@ -20,16 +20,11 @@ class DogsController < ApplicationController
   def update
   	@dog = Dog.find(params[:id])
   	@dog.update(event_params)
-<<<<<<< HEAD
 
   	flash[:notice] = "event was successfully updated"
 
     redirect_to dog_url
-=======
-  	flash[:notice] = "event was successfully updated"
 
-    redirect_to dog_path(@dog)
->>>>>>> 689b101e0900ad5092d82134f73c7e31509144dd
   end
 
   def destroy

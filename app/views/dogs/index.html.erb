@@ -1,10 +1,9 @@
 <h1> List </h1>
 
-<<<<<<< HEAD
+
 <%= paginate @dogs %>
 
-=======
->>>>>>> 689b101e0900ad5092d82134f73c7e31509144dd
+
 <table class= 'table'>
 
 <thead>
@@ -28,14 +27,18 @@
 		  <td><%= link_to 'edit' , edit_dog_path(d) , :class => "btn btn-default" %></td>
 		  <td><%= link_to 'Get json' , dog_path(d, :format => :json) , :class => "btn btn-default"%></td>
 		  <td><%= link_to 'delete', dog_path(d), :class => "btn btn-default" , :method => :delete, :data => { :confirm => "Are you sure?" } %></td>
-		  
 	  </tr>
+	  
 <% end %>
 	</tbody>
 </table>
-<<<<<<< HEAD
 
-=======
->>>>>>> 689b101e0900ad5092d82134f73c7e31509144dd
 
 <%= link_to 'New Event', new_dog_path() %>
+
+
+
+
+
+
+
