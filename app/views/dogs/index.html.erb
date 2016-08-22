@@ -1,8 +1,43 @@
 <h1> List </h1>
 
+<% if params[:id] %>
+    <%= form_for @dog do |f| %>
+        
+        <%= f.label :name , "name"%>
+        <%= f.text_field :name %>
+
+        <%= f.label :descrip , "descrip"%>
+        <%= f.text_field :descrip %>
+
+        <%= f.label :date %>
+        <%= f.date_select :date %>
+
+        <%= f.submit "EDIT" %>
+        <%= link_to 'New form' , dogs_url , :class => "btn btn-default" %>
+
+    <% end %>
+    <% else %>
+        <%= form_for @dog do |f| %>
+            
+            <%= f.label :name , "name" %>
+            <%= f.text_field :name %>
+
+            <%= f.label :descrip , "descrip" %>
+            <%= f.text_field :descrip %>
+
+            <%= f.label :date %>
+            <%= f.date_select :date %>
+
+            <%= f.submit "NEW" %>
+
+
+    <% end %>
+<% end %>
+
+
+
 
 <%= paginate @dogs %>
-
 
 <table class= 'table'>
 
@@ -11,6 +46,7 @@
         <th>name</th>
         <th>description</th>
         <th>show</th>
+        <th>Date</th>
         <th>edit</th>
         <th>Get J</th>
         <th>delete</th>
@@ -24,7 +60,8 @@
 	 	  <td><%= d.name %></td>
 	 	  <td><%= d.descrip %></td>
 		  <td><%= link_to 'show' , dog_path(d) , :class => "btn btn-default" %></td>
-		  <td><%= link_to 'edit' , edit_dog_path(d) , :class => "btn btn-default" %></td>
+          <td><%= d.date %></td>
+		  <td><%= link_to 'edit' , dogs_path(id: d, page: params[:page]) , :class => "btn btn-default" %></td>
 		  <td><%= link_to 'Get json' , dog_path(d, :format => :json) , :class => "btn btn-default"%></td>
 		  <td><%= link_to 'delete', dog_path(d), :class => "btn btn-default" , :method => :delete, :data => { :confirm => "Are you sure?" } %></td>
 	  </tr>
@@ -35,10 +72,3 @@
 
 
 <%= link_to 'New Event', new_dog_path() %>
-
-
-
-
-
-
-

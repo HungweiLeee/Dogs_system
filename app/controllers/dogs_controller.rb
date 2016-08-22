@@ -1,7 +1,14 @@
 class DogsController < ApplicationController
 
   def index
-  	@dogs = Dog.page(params[:page]).per(5)
+    @dogs = Dog.page(params[:page]).per(5)
+    
+    if params[:id].present?
+      @dog = Dog.find(params[:id])
+    else
+      @dog = Dog.new
+    end
+
   end
 
   def new
@@ -44,7 +51,6 @@ class DogsController < ApplicationController
       render :action => :new
     end
 
-  	redirect_to dog_path(@dog)
   end
 
 
@@ -53,7 +59,7 @@ class DogsController < ApplicationController
   private
 
   def event_params
-  	params.require(:dog).permit(:name, :descrip)
+  	params.require(:dog).permit(:name, :descrip, :date)
   end
 
 end
